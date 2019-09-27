@@ -4,6 +4,8 @@ strappy
 Rework from intent of original bootstrap scaffolding for minimal, flexible web
 applications. It's awesome! Super-small! And has NO dependencies! Try it.
 
+.. contents::
+
 Quick Start
 -----------
 
