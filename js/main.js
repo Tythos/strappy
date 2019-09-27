@@ -1,7 +1,9 @@
 /*
 */
 
-require(["handlebars", "quajax"], function(handlebars, quajax) {
+require(["handlebars", "quajax", "responsive"], function(handlebars, quajax, responsive) {
+    responsive();
+    
     quajax.get("hbs/example.hbs", function(hbs) {
         let template = handlebars.compile(hbs);
         document.body.innerHTML = template({
