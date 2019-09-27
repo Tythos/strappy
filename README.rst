@@ -2,7 +2,9 @@ strappy
 =======
 
 Rework from intent of original bootstrap scaffolding for minimal, flexible web
-applications. It's awesome! Super-small! And has NO dependencies! Try it.
+applications. It's awesome! It's super-small! It's AMD-based! It has NO dependencies!
+
+You should try it.
 
 .. contents::
 
@@ -21,7 +23,7 @@ This folder contains three stylesheets:
 
 * *common.css* contains styles used across ALL view modes.
 
-* *compact.css" contains styles used when the application detects that a
+* *compact.css* contains styles used when the application detects that a
   compact view mode is required.
 
 * *standard.css* contains styles used when the application detects that a
