@@ -1,0 +1,52 @@
+/* Contains media-query stylesheets for modifying layout on-the-fly
+*/
+
+.Footer table {
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 800px) {
+    body {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+
+    .MenuButton {
+        display: none;
+    }
+
+    .Header, .Footer {
+        grid-column: 1 / 3;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .Header {
+        position: fixed;
+        top: 0;
+        height: 4em;
+        width: 100%;
+        background-color: #fff;
+    }
+
+    .Content {
+        padding-top: 4em;
+    }
+
+    .MenuButton {
+        position: fixed;
+        top: 8px;
+        right: 8px;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    .Navigation {
+        display: none; /* toggled by menu-click */
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: #fff;
+        z-index: 1;
+    }
+}

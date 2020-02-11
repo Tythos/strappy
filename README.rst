@@ -1,8 +1,9 @@
 strappy
 =======
 
-Rework from intent of original bootstrap scaffolding for minimal, flexible web
-applications. It's awesome! It's super-small! It's AMD-based! It has NO dependencies!
+Rework from intent of original Bootstrap scaffolding for minimal, flexible web
+applications. It's awesome! It's super-small! It's AMD-based! It has NO
+dependencies! And it now has responsivee layout with navigation menus!
 
 You should try it.
 
@@ -19,30 +20,14 @@ you leave out the ".git/" folder.)
 CSS
 ---
 
-This folder contains three stylesheets:
+This folder contains stylesheets, but we're moving away from plethoras of CSS
+files:
 
-* *common.css* contains styles used across ALL view modes.
+* Media queries are now used to handle device layouts, in combination with CSS
+  Grid, so separate stylesheets for device classes are no longer needed
 
-* *compact.css* contains styles used when the application detects that a
-  compact view mode is required.
-
-* *standard.css* contains styles used when the application detects that a
-  compact view mode is NOT required.
-
-Switching between the compact and standard stylesheets is, at present,
-determined by window width, including event listeners. You can test it out in
-real time by changing the width of your browser window. However, it may also be
-useful in the future to add checks for device type meta elements. Especially
-since so many mobile devices now adays regularly have 1000+ pixels on their
-*smallest* dimension! Future triggers could include:
-
-* Device type inspection
-
-* Orientation
-
-* Pixel pitch / angular resolution
-
-* User interaction mode (larger elements for touch-based)
+* To consolidate code/data dichotemy on the "data" side for interface
+  components, we're doing more styling within the Handlebars templates
 
 HBS
 ---
@@ -51,7 +36,8 @@ Rendering parameterized HTML content is handled, by default, through Handlebars
 template. Those templates are stored in the "hbs/" folder. Handlebars are a
 great alternative to more complex web UI frameworks like React and Angular:
 
-* There are absolutely no dependencies aside from the Handlebars module itself
+* There are absolutely no dependencies, aside from the nicely-encapsulated
+  Handlebars module itself
 
 * Templating syntax is straightforward, with just enough logical operators and
   iterators to be powerful but not enough to impose a learning curve
@@ -64,24 +50,48 @@ great alternative to more complex web UI frameworks like React and Angular:
   querySelector()?) makes it straightforward to bind specific event listeners.
 
 * One-to-one pairings of JavaScript modules (with rendering and event/control
-  logic) with HBS files (DOM and styling) make a natural and elegant paring
+  logic) with HBS files (DOM and styling) make a natural and elegant pairing.
+  In fact, the latest Strappy release includes a "Facet" model for UI
+  components, object-oriented and with their own "on()" event listeners.
 
 JS
 --
 
-This folder contains all JavaScript modules (AMD-compatible), including a few
-key built-in files:
+This folder contains all JavaScript modules (AMD-compatible). These have been
+re-organized in recent Strappy releases, so make sure you read the updated
+layout/instructions!
+
+lib
+```
+
+The "lib/" folder includes several useful external JavaScript libraries:
 
 * *handlebars* is the templating engine; see the "HBS" section for more details
 
-* *main* defines the entry point, as wrapped in a RequireJS "require()" call
-
-* *quajax* is a basic AJAX module for fetching templates and other files
+* *hbs-loader* is a RequireJS plugin for facilitating HBS loading and rendering
+  straight to DOM, which makes it super-streamlined for load-once templates
+  within Facet modules--no matter how many times that module is loaded or used
+  (see Facets for more details).
 
 * *require* is the RequireJS module manager, used to bootstrap the entry point,
   expose the main "require()" method, and give modules a way to "define()*"
   themselves.
 
-* *responsive* defines a method to implement responsive UI behavior. See the
-  "CSS" section for more details on response UI logic, which is
-  stylesheet-based.
+facets
+``````
+
+Facets are user interface components, organized around a Handlebars template
+(.HBS) and a JavaScript object that subclasses the Facet base class. Facets are
+very easy to develop and use, thanks to super-clean seperation of data and
+logic on one hand, and a nicely-streamlined use case for rendering,
+subscribing, and attaching on the other. Some Facets included out-of-the-box
+(though mainly as examples) include customized Buttons, Tables, and a
+Title/Subtitle pair.
+
+main
+````
+
+This is the main entry point for the application. Facets can be loaded as
+AMD-compatible modules, then instantiated and rendered to the DOM, to populate
+the user interface. Layout flexibility is handled by media query style rules in
+the "responsive.css" stylesheet.

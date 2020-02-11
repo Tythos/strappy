@@ -3,7 +3,85 @@
     <head>
         <title>Strappy - web application scaffolding</title>
         <meta charset="utf-8"/>
-        <script type="text/javascript" src="js/require.js" data-main="js/main"></script>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <link rel="stylesheet" href="css/strappy.css" type="text/css"/>
+        <script type="text/javascript">
+            function toggleMenu() {
+                let nav = window.document.querySelector(".Navigation");
+                nav.style.display = nav.style.display == "block" ? "none": "block";
+            }
+        </script>
+        <script type="text/javascript" src="js/lib/require-2.3.2.js" data-main="js/main"></script>
     </head>
-    <body></body>
+    <body>
+        <div class="Header">
+            <h1>Strappy</h1>
+        </div>
+        <div class="MenuButton" onclick="toggleMenu()">
+            [toggle menu]
+        </div>
+        <div class="Navigation">
+            <ul>
+                <li>Section One</li>
+                <li>Section Two</li>
+                <ul>
+                    <li>Subsection Alpha</li>
+                    <li>Subsection Bravo</li>
+                    <li>Subsection Charlie</li>
+                </ul>
+                <li>Section Three</li>
+            </ul>
+        </div>
+        <div class="Content">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+                ultrices dolor at pretium fermentum. Aliquam nunc enim,
+                ultrices quis blandit in, accumsan at dui. Morbi egestas
+                tincidunt justo sit amet semper. Nunc pellentesque id urna et
+                finibus. Aliquam dictum nulla auctor risus pellentesque, eu
+                ultricies nulla maximus. Nulla ut eros nunc. Nulla eget
+                suscipit nunc. Sed justo quam, rutrum sed eros consectetur,
+                vulputate ultricies enim. Vivamus consequat enim urna, id
+                commodo felis venenatis a. Aenean volutpat nulla urna, non
+                viverra risus vehicula ultricies. Phasellus sodales elit
+                ullamcorper felis malesuada semper quis auctor nisi. In sit
+                amet pharetra ex.
+            </p>
+            <p>
+                Etiam porttitor scelerisque nisl in laoreet. Morbi tincidunt
+                ante nibh, nec sagittis nibh placerat non. Pellentesque ac
+                ullamcorper turpis. Nam sollicitudin tortor vitae lacinia
+                varius. Aliquam purus lacus, porttitor eu ex sed, sagittis
+                lacinia metus. Cras lobortis magna sed rutrum pulvinar. Morbi
+                eu dolor odio. Proin dapibus at metus et consectetur. Vivamus
+                et tempus quam. Vestibulum vel metus finibus, pretium orci a,
+                feugiat erat. Vestibulum non sem sapien. Maecenas at consequat
+                urna. Quisque lobortis auctor eros, in auctor quam. 
+            </p>
+            <p>
+                Aliquam eget massa magna. Curabitur ornare erat in vulputate
+                sagittis. Maecenas volutpat, elit a tempor semper, purus odio
+                tempus quam, sit amet mollis lectus enim in nisl. Integer
+                commodo congue lacus, id cursus orci efficitur hendrerit. Morbi
+                varius consequat sodales. Aliquam convallis eros pellentesque
+                egestas porta. Pellentesque nisl sapien, efficitur vel tempor
+                a, malesuada et elit. Integer at quam lectus. Praesent blandit
+                ex volutpat vestibulum blandit. Nulla porttitor ultricies
+                velit. Nunc iaculis nisl lobortis, vehicula mi non, finibus
+                est. Suspendisse erat felis, luctus non libero eget,
+                pellentesque blandit sapien. 
+            </p>
+        </div>
+        <div class="Footer">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><a>Twitter</a></td>
+                        <td><a>LinkedIn</a></td>
+                        <td>Copyright 2020, ExoAnalytic Solutions</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
 </html>
