@@ -6,8 +6,8 @@ define(function(require, exports, module) {
     let template = require("hbs!hbs/TitlePair.hbs");
 
     class TitlePair extends Facet {
-        constructor(parameters) {
-            super(template, parameters);
+        constructor() {
+            super(template);
         }
     }
 

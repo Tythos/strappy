@@ -2,39 +2,58 @@
 */
 
 define(function(require, exports, module) {
+    let handlebars = require("lib/handlebars-4.0.12");
+    handlebars.registerHelper("upper", function(str) { return str.toUpperCase(); });
+    handlebars.registerHelper("lower", function(str) { return str.toLowerCase(); });
+
     class Facet {
-        constructor(template, parameters) {
+        constructor(template) {
             /*
             */
-            this.subdom = template.render(parameters);
+            this.template = template;
+            this.parameters = {};
+            this.listeners = {};
+            return this;
+        }
+
+        param(key, value) {
+            /*
+            */
+            this.parameters[key] = value;
             return this;
         }
 
         on(tag, listener) {
             /*
             */
-            switch (tag.toUpperCase()) {
-                default:
+            tag = tag.toUpperCase();
+            let tags = Object.keys(this.listeners);
+            if (tags.indexOf(tag) < 0) {
+                this.listeners[tag] = [];
             }
+            this.listeners[tag].push(function(event) {
+                event.facet = this;
+                listener(event)
+            }.bind(this));
             return this;
+        }
+
+        attach(subdom) {
+            /* Given existing event listeners, the specific facet class is
+               responsible for resolving specific elements within the subdom to
+               which DOM events will subsequently propagate listeners. This
+               method is invoked internally when render() is called. Therefore,
+               it's *this* method that should be overridden by subclasses.
+            */
+            return subdom;
         }
 
         render() {
             /*
             */
-            return this.subdom;
-        }
-
-        select(selector) {
-            /*
-            */
-            return this.subdom.querySelector(selector);
-        }
-
-        selects(selector) {
-            /*
-            */
-            return Array.from(this.subdom.querySelectorAll(selector));
+            let subdom = this.template.render(this.parameters);
+            subdom = this.attach(subdom);
+            return subdom;
         }
     }
 

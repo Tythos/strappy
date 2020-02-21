@@ -1,17 +1,36 @@
 <style>
     .Button {
-        font-weight: bold;
-        padding: 4px 8px;
-        background: linear-gradient(#235, #346);
-        border: 2px solid #57b;
-        color: #57b;
         cursor: pointer;
-        border-radius: 16px;
+        border-radius: 8px;
         height: 32px;
+        color: #fff;
+        border-width: 0px;
+        box-shadow: 0px 0px 4px #000;
+        font-size: 0.9em;
     }
 
-    .Button:hover {
-        background: #333;
-    }
+    .ButtonPRIMARY { background-color: #007bff; }
+    .ButtonPRIMARY:hover { background-color: #006bef; }
+
+    .ButtonSECONDARY { background-color: #5a6268; }
+    .ButtonSECONDARY:hover { background-color: #4a5258; }
+
+    .ButtonSUCCESS { background-color: #218838; }
+    .ButtonSUCCESS:hover { background-color: #117828; }
+    
+    .ButtonWARNING { background-color: #e0a800; color: #000; }
+    .ButtonWARNING:hover { background-color: #d09800; }
+
+    .ButtonDANGER { background-color: #c82333; }
+    .ButtonDANGER:hover { background-color: #b81323; }
+
+    .ButtonINFO { background-color: #17a2b8; }
+    .ButtonINFO:hover { background-color: #0792a8; }
+
+    .ButtonLIGHT { background-color: #e2e6ea; color: #000; }
+    .ButtonLIGHT:hover { background-color: #d2d6da; }
+
+    .ButtonDARK { background-color: #23272b; }
+    .ButtonDARK:hover { background-color: #13171b; }
 </style>
-<input class="Button" type="button" value="{{label}}"/>
+<button class="Button Button{{upper variant}}">{{label}}</button>

@@ -1,0 +1,45 @@
+<style>
+    .Accordion {
+        border: 1px solid #777;
+        border-radius: 8px;
+    }
+
+    .AccordionHeader {
+        font-family: sans-serif;
+        background-color: #eee;
+        color: #007bff;
+        padding: 16px;
+        border-top: 1px solid #777;
+    }
+
+    .AccordionHeader:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .AccordionHeader0 {
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+        border-top-width: 0px;
+    }
+
+    .AccordionHeaderLast {
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        border-bottom-width: 0px;
+    }
+
+    .Accordion .Card {
+        border-width: 0px;
+    }
+
+    .AccordionEntry {
+        border-top: 1px solid #777;
+    }
+</style>
+<div class="Accordion">
+    {{#each headers}}
+        <div class="AccordionHeader AccordionHeader{{@index}} {{#if @last}}AccordionHeaderLast{{/if}}">{{this}}</div>
+        <div class="AccordionEntry AccordionEntry{{@index}} {{#if @last}}AccordionEntryLast{{/if}}" style="display:none;"></div>
+    {{/each}}
+</div>

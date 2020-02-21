@@ -6,23 +6,21 @@ define(function(require, exports, module) {
     let Facet = require("facets/Facet");
 
     class Button extends Facet {
-        constructor(parameters) {
-            super(template, parameters);
+        constructor() {
+            super(template);
+            this.parameters.variant = "PRIMARY";
         }
 
-        on(tag, listener) {
+        attach(subdom) {
             /*
             */
-            switch (tag.toUpperCase()) {
-                case "CLICK":
-                    this.subdom.querySelector("input").addEventListener("click", function(event) {
-                        event.facet = this;
-                        listener(event);
-                    }.bind(this));
-                    break;
-                default:
+            let button = subdom.querySelector("button");
+            if (this.listeners.CLICK) {
+                this.listeners.CLICK.forEach(function(listener) {
+                    button.addEventListener("click", listener);
+                });
             }
-            return this;
+            return subdom;
         }
     }
 
