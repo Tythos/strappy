@@ -1,0 +1,43 @@
+<style>
+    .Carousel {
+        position: relative;
+    }
+
+    .CarouselItem {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .CarouselSlide {
+        width: 100%;
+    }
+
+    .CarouselText {
+        text-align: center;
+        width: 100%;
+        color: #fff;
+        text-shadow: 2px 2px 6px #000;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .CarouselText h3 {
+        
+    }
+
+    .CarouselText p {
+
+    }
+</style>
+<div class="Carousel" style="width:{{width}}px">
+    {{#each items}}
+        <div class="CarouselItem CarouselItem{{@index}}" style="width:{{../width}}px;opacity:{{#if @first}}1.0{{else}}0.0{{/if}};">
+            <img src="{{slide}}" class="CarouselSlide"/>
+            <div class="CarouselText">
+                <h3>{{title}}</h3>
+                <p>{{caption}}</p>
+            </div>
+        </div>
+    {{/each}}
+</div>

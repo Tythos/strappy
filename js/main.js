@@ -7,8 +7,21 @@ require.config({
     }
 });
 
-require(["facets/Table", "facets/TitlePair", "facets/Button", "facets/Alert", "facets/Card", "facets/Accordion", "facets/Badge", "facets/Breadcrumbs", "facets/ButtonGroup", "facets/Carousel"], function(Table, TitlePair, Button, Alert, Card, Accordion, Badge, Breadcrumbs, ButtonGroup, Carousel) {
-    function onBtnClick(event) {
+let dependencies = [
+    "../facets/Table",
+    "../facets/TitlePair",
+    "../facets/Button",
+    "../facets/Alert",
+    "../facets/Card",
+    "../facets/Accordion",
+    "../facets/Badge",
+    "../facets/Breadcrumbs",
+    "../facets/ButtonGroup",
+    "../facets/Carousel"
+];
+
+require(dependencies, function(Table, TitlePair, Button, Alert, Card, Accordion, Badge, Breadcrumbs, ButtonGroup, Carousel) {
+        function onBtnClick(event) {
         console.log("Button clicked:", event);
     }
 
@@ -49,33 +62,32 @@ require(["facets/Table", "facets/TitlePair", "facets/Button", "facets/Alert", "f
         .param("title", "My Card!")
         .param("text", "This is my card. There are many like it, but this one is mine.")
         .param("width", 200)
-        .on("click", onCardClick)
         .render()
-    );*/
+    );
 
-    /*content.appendChild((new Accordion())
+    content.appendChild((new Accordion())
         .card("Click Me!", (new Card()).param("text", "Hello! I'm the first one"))
         .card("Click Me.", (new Card()).param("text", "Hello! I'm another body"))
-        .card("Click Me?", (new Card()).param("text", "Hello! I'm the last one").param("button", "CLICK THE CARD BUTTON ALREADY"))
+        .card("Click Me?", (new Card()).param("text", "Hello! I'm the last one"))
         .render()
-    );*/
+    );
 
-    /*let h1 = window.document.createElement("h1");
+    let h1 = window.document.createElement("h1");
     h1.textContent = "Ye Olde Title";
     content.appendChild(h1);
     h1.appendChild((new Badge())
         .param("label", "The Badge")
         .render()
-    );*/
+    );
 
-    /*content.appendChild((new Breadcrumbs())
+    content.appendChild((new Breadcrumbs())
         .item("Home", "#")
         .item("Library", "https://getbootstrap.com/docs/4.0/components/breadcrumb/")
         .item("Data")
         .render()
-    );*/
+    );
 
-    /*content.appendChild((new ButtonGroup())
+    content.appendChild((new ButtonGroup())
         .button((new Button()).param("label", "One").on("CLICK", onBtnClick))
         .button((new Button()).param("label", "Two"))
         .button((new Button()).param("label", "Three"))

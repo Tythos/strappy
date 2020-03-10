@@ -2,8 +2,8 @@
 */
 
 define(function(require, exports, module) {
-    let template = require("hbs!hbs/Badge.hbs");
-    let Facet = require("facets/Facet");
+    let template = require("hbs!facets/Badge.hbs");
+    let Facet = require("../facets/Facet");
 
     class Badge extends Facet {
         constructor() {
@@ -15,9 +15,10 @@ define(function(require, exports, module) {
             /* To ensure inline, we need to extract child elements from the
                top-level <div/> wrapper returned from template rendering.
             */
-           let subdom = this.template.render(this.parameters);
-           subdom = this.attach(subdom);
-           return subdom.children[0];
+            let parent = this.template.render(this.parameters);
+            this.subdom = parent.children[0];
+            this.attach();
+            return this.subdom;
        }
     }
 

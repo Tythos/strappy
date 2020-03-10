@@ -2,8 +2,8 @@
 */
 
 define(function(require, exports, module) {
-    let template = require("hbs!hbs/Alert.hbs");
-    let Facet = require("facets/Facet");
+    let template = require("hbs!facets/Alert.hbs");
+    let Facet = require("../facets/Facet");
     let Animaniac = require("lib/Animaniac-1.0.0");
 
     class Alert extends Facet {

@@ -2,8 +2,8 @@
 */
 
 define(function(require, exports, module) {
-    let template = require("hbs!hbs/ButtonGroup.hbs");
-    let Facet = require("facets/Facet");
+    let template = require("hbs!facets/ButtonGroup.hbs");
+    let Facet = require("../facets/Facet");
 
     class ButtonGroup extends Facet {
         constructor() {
@@ -19,12 +19,6 @@ define(function(require, exports, module) {
             return this;
         }
 
-        attach(subdom) {
-            /* How to back out event attachments?
-            */
-            return subdom;
-        }
-
         render() {
             /* We should reuse as much of the Button rendering as possible. But
                we do need to override certain aspects of styling.
@@ -33,13 +27,13 @@ define(function(require, exports, module) {
             this.parameters.buttons = this.buttons.map(function(btn) {
                 return btn.render(); // can't transcribe without loosing attached events
             });
-            let subdom = super.render();
-            let children = subdom.querySelector(".ButtonGroup").children;
+            this.subdom = super.render();
+            let children = this.subdom.querySelector(".ButtonGroup").children;
             Array.from(children).forEach(function(div, ndx) {
                 div.appendChild(this.parameters.buttons[ndx]);
             }, this);
-            this.attach(subdom);
-            return subdom;
+            this.attach();
+            return this.subdom;
         }
     }
 

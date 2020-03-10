@@ -13,6 +13,7 @@ define(function(require, exports, module) {
             this.template = template;
             this.parameters = {};
             this.listeners = {};
+            this.subdom = null;
             return this;
         }
 
@@ -38,22 +39,21 @@ define(function(require, exports, module) {
             return this;
         }
 
-        attach(subdom) {
+        attach() {
             /* Given existing event listeners, the specific facet class is
                responsible for resolving specific elements within the subdom to
                which DOM events will subsequently propagate listeners. This
                method is invoked internally when render() is called. Therefore,
                it's *this* method that should be overridden by subclasses.
             */
-            return subdom;
         }
 
         render() {
             /*
             */
-            let subdom = this.template.render(this.parameters);
-            subdom = this.attach(subdom);
-            return subdom;
+            this.subdom = this.template.render(this.parameters);
+            this.attach();
+            return this.subdom;
         }
     }
 

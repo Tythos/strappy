@@ -2,8 +2,8 @@
 */
 
 define(function(require, exports, module) {
-    let template = require("hbs!hbs/Accordion.hbs");
-    let Facet = require("facets/Facet");
+    let template = require("hbs!facets/Accordion.hbs");
+    let Facet = require("../facets/Facet");
 
     class Accordion extends Facet {
         constructor() {
@@ -20,14 +20,13 @@ define(function(require, exports, module) {
             return this;
         }
 
-        attach(subdom) {
+        attach() {
             /*
             */
-            let headers = Array.from(subdom.querySelectorAll(".AccordionHeader"));
+            let headers = Array.from(this.subdom.querySelectorAll(".AccordionHeader"));
             headers.forEach(function(header) {
                 header.addEventListener("click", this.onAccordionToggle.bind(this));
             }, this);
-            return subdom;
         }
 
         onAccordionToggle(event) {

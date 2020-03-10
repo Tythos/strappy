@@ -2,8 +2,8 @@
 */
 
 define(function(require, exports, module) {
-    let template = require("hbs!hbs/Button.hbs");
-    let Facet = require("facets/Facet");
+    let template = require("hbs!facets/Button.hbs");
+    let Facet = require("../facets/Facet");
 
     class Button extends Facet {
         constructor() {
@@ -11,16 +11,15 @@ define(function(require, exports, module) {
             this.parameters.variant = "PRIMARY";
         }
 
-        attach(subdom) {
+        attach() {
             /*
             */
-            let button = subdom.querySelector("button");
+            let button = this.subdom.querySelector("button");
             if (this.listeners.CLICK) {
                 this.listeners.CLICK.forEach(function(listener) {
                     button.addEventListener("click", listener);
                 });
             }
-            return subdom;
         }
     }
 
