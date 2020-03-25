@@ -3,7 +3,7 @@
 
 define(function(require, exports, module) {
     let template = require("hbs!facets/Button.hbs");
-    let Facet = require("../facets/Facet");
+    let Facet = require("Facet");
 
     class Button extends Facet {
         constructor() {

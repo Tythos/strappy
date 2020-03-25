@@ -2,7 +2,7 @@
 */
 
 define(function(require, exports, module) {
-    let handlebars = require("lib/handlebars-4.0.12");
+    let handlebars = require("lib/handlebars-v4.0.12.min");
     handlebars.registerHelper("upper", function(str) { return str.toUpperCase(); });
     handlebars.registerHelper("lower", function(str) { return str.toLowerCase(); });
 

@@ -3,102 +3,42 @@
 
 require.config({
     "paths": {
-        "hbs": "lib/hbs-loader-1.0.0",
+        "hbs": "lib/hbs-loader-v1.0.0.min",
     }
 });
 
-let dependencies = [
-    "../facets/Table",
-    "../facets/TitlePair",
-    "../facets/Button",
-    "../facets/Alert",
-    "../facets/Card",
-    "../facets/Accordion",
-    "../facets/Badge",
-    "../facets/Breadcrumbs",
-    "../facets/ButtonGroup",
-    "../facets/Carousel"
-];
-
-require(dependencies, function(Table, TitlePair, Button, Alert, Card, Accordion, Badge, Breadcrumbs, ButtonGroup, Carousel) {
-        function onBtnClick(event) {
-        console.log("Button clicked:", event);
+require(["lib/handlebars-v4.0.12.min", "../facets/Button", "lib/Animaniac-v1.1.0.min"], function(handlebars, Button, Animaniac) {
+    function onButtonClick(event) {
+        console.log("the button has been clicked!", event);
+        new Animaniac()
+            .element(event.target)
+            .prop("opacity", [1, 0])
+            .duration(0.5)
+            .start();
     }
 
-    function onCardClick(event) {
-        console.log("Card clicked:", event);
+    function renderLayout(rawHbs) {
+        let template = handlebars.compile(rawHbs);
+        window.document.body.innerHTML = template({
+            "year": (new Date()).getUTCFullYear(),
+            "org": "Tythos Creatives, LLC",
+            "paragraphs": [
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ultrices dolor at pretium fermentum. Aliquam nunc enim, ultrices quis blandit in, accumsan at dui. Morbi egestas tincidunt justo sit amet semper. Nunc pellentesque id urna et finibus. Aliquam dictum nulla auctor risus pellentesque, eu.",
+                "Etiam porttitor scelerisque nisl in laoreet. Morbi tincidunt ante nibh, nec sagittis nibh placerat non. Pellentesque ac ullamcorper turpis. Nam sollicitudin tortor vitae lacinia varius. Aliquam purus lacus, porttitor eu ex sed, sagittis lacinia metus. Cras lobortis magna sed rutrum pulvinar. Morbi.",
+                "Aliquam eget massa magna. Curabitur ornare erat in vulputate sagittis. Maecenas volutpat, elit a tempor semper, purus odio tempus quam, sit amet mollis lectus enim in nisl. Integer commodo congue lacus, id cursus orci efficitur hendrerit. Morbi varius consequat sodales. Aliquam convallis eros pellentesque."
+            ]
+        });
+
+        window.document.body.querySelector(".Content").appendChild(
+            (new Button())
+            .param("variant", "success")
+            .param("label", "My Button")
+            .on("click", onButtonClick)
+            .render()
+        );
     }
 
-    let content = window.document.querySelector(".Content");
-
-    /*content.appendChild((new Table())
-        .param("name", "Kirk")
-        .param("age", 34)
-        .param("food", "bbq")
-        .render()
-    );
-
-    content.appendChild((new TitlePair())
-        .param("title", "Kirk")
-        .param("subtitle", `${34} years old`)
-        .render()
-    );
-
-    content.appendChild((new Button())
-        .param("label", "My Button")
-        .param("variant", "danger")
-        .on("CLICK", onBtnClick)
-        .render()
-    );
-
-    content.appendChild((new Alert())
-        .param("variant", "warning")
-        .param("content", "THIS IS AN ALERT!")
-        .render()
-    );
-
-    content.appendChild((new Card())
-        .param("img", "img/borat_success.png")
-        .param("title", "My Card!")
-        .param("text", "This is my card. There are many like it, but this one is mine.")
-        .param("width", 200)
-        .render()
-    );
-
-    content.appendChild((new Accordion())
-        .card("Click Me!", (new Card()).param("text", "Hello! I'm the first one"))
-        .card("Click Me.", (new Card()).param("text", "Hello! I'm another body"))
-        .card("Click Me?", (new Card()).param("text", "Hello! I'm the last one"))
-        .render()
-    );
-
-    let h1 = window.document.createElement("h1");
-    h1.textContent = "Ye Olde Title";
-    content.appendChild(h1);
-    h1.appendChild((new Badge())
-        .param("label", "The Badge")
-        .render()
-    );
-
-    content.appendChild((new Breadcrumbs())
-        .item("Home", "#")
-        .item("Library", "https://getbootstrap.com/docs/4.0/components/breadcrumb/")
-        .item("Data")
-        .render()
-    );
-
-    content.appendChild((new ButtonGroup())
-        .button((new Button()).param("label", "One").on("CLICK", onBtnClick))
-        .button((new Button()).param("label", "Two"))
-        .button((new Button()).param("label", "Three"))
-        .button((new Button()).param("label", "Four"))
-        .render()
-    );*/
-
-    content.appendChild((new Carousel())
-        .item("img/barcelona.png", "Barcelona", "It wasn't always such a nice place")
-        .item("img/bruny_neck.png", "Bruny Neck", "Somewhere in Ireland, maybe? Looks nice.")
-        .item("img/dublin_chapel.png", "Dublin Chapel", "Don't blame me, it's Wikipedia's random featured image feature")
-        .render()
-    );
+    fetch("hbs/layout.hbs")
+        .then((response) => { return response.text(); })
+        .then((body) => { renderLayout(body); });
 });
